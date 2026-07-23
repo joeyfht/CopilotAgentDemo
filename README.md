@@ -37,7 +37,3 @@ A demonstration ASP.NET Core Web API project showcasing GitHub Copilot agent wor
 
 - **Unit tests** verify controller behavior in isolation (e.g. correct number of forecasts, valid temperature ranges, future dates)
 - **Integration tests** spin up the full application in-memory and validate HTTP responses (status codes, content type, payload shape)
-
-## Author
-
-- **Joey Fan**
