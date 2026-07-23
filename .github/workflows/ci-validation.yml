@@ -1,11 +1,10 @@
 name: CI Validation
 
 on:
-  pull_request:
+  push:
     branches:
       - '**'
-
-  push:
+  pull_request:
     branches:
       - '**'
 
