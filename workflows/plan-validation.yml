@@ -1,0 +1,49 @@
+name: Plan Validation
+
+on:
+  pull_request:
+    branches:
+      - '**'
+
+permissions:
+  pull-requests: read
+  contents: read
+
+jobs:
+
+  validate-plan:
+
+    name: Validate Implementation Plan
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check PR description contains plan
+        uses: actions/github-script@v7
+        with:
+          script: |
+
+            const body =
+              context.payload.pull_request.body || "";
+
+            const requiredSections = [
+              "## Implementation Plan",
+              "## Files Impacted",
+              "## Testing Strategy",
+              "## Risks"
+            ];
+
+            const missing =
+              requiredSections.filter(
+                section => !body.includes(section)
+              );
+
+            if (missing.length > 0) {
+
+              core.setFailed(
+                "Missing sections: " +
+                missing.join(", ")
+              );
+
+            }

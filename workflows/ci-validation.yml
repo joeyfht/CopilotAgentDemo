@@ -1,0 +1,62 @@
+name: CI Validation
+
+on:
+  pull_request:
+    branches:
+      - '**'
+
+  push:
+    branches:
+      - '**'
+
+permissions:
+  contents: read
+
+jobs:
+
+  build-test:
+
+    name: Build, Test and Validate
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore packages
+        run: dotnet restore
+
+      - name: Build
+        run: |
+          dotnet build \
+            --configuration Release \
+            --no-restore
+
+      - name: Run unit tests
+        run: |
+          dotnet test \
+            --configuration Release \
+            --no-build \
+            --logger trx \
+            --results-directory TestResults
+
+      - name: Publish test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults/
+
+      - name: Publish build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: |
+            **/bin/Release/

@@ -1,0 +1,55 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy-dev:
+    name: Deploy Dev
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id:
+            ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id:
+            ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id:
+            ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Deploy
+        run: |
+          echo "Deploying Dev"
+  deploy-test:
+    name: Deploy Test
+    needs:
+      - deploy-dev
+    runs-on: ubuntu-latest
+    environment:
+      name: test
+    steps:
+      - name: Deploy
+        run: |
+          echo "Deploying Test"
+  deploy-prod:
+    name: Deploy Production
+    needs:
+      - deploy-test
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - name: Deploy
+        run: |
+          echo "Deploying Production"
