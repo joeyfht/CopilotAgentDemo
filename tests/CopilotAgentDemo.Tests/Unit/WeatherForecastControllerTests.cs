@@ -62,8 +62,8 @@ public class WeatherForecastControllerTests
 
     [Theory]
     [InlineData(0, 32)]
-    [InlineData(100, 211)]
-    [InlineData(-40, -39)]
+    [InlineData(100, 212)]
+    [InlineData(-40, -40)]
     public void WeatherForecast_TemperatureF_ConvertsCorrectly(int celsius, int expectedFahrenheit)
     {
         var forecast = new WeatherForecast { TemperatureC = celsius };
