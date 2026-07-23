@@ -12,7 +12,7 @@ Keep this concise.
 Closes #
 
 ---
-# Implementation Plan
+## Implementation Plan
 <!--
 Required for Copilot Coding Agent changes.
 
@@ -23,7 +23,7 @@ Explain:
 -->
 
 ---
-# Files Impacted
+## Files Impacted
 <!--
 List important files/modules changed.
 
@@ -47,8 +47,8 @@ Include:
 -->
 
 ---
-# Testing Strategy
-## Automated Tests
+## Testing Strategy
+### Automated Tests
 <!--
 Example:
 - Unit tests added
@@ -56,7 +56,7 @@ Example:
 - Existing tests passed
 -->
 
-## Manual Validation
+### Manual Validation
 <!--
 Describe any manual verification performed.
 -->
@@ -74,7 +74,7 @@ Examples:
 -->
 
 ---
-# Risks
+## Risks
 <!--
 What could go wrong?
 
