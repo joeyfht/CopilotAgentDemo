@@ -39,7 +39,7 @@ Do not:
 - change infrastructure
 - create migrations
 
-The only files you may modify are documentation artifacts when necessary.
+You should NOT make any modification to any file within the scope of the requested change.
 
 ---
 
