@@ -51,4 +51,12 @@ public class WeatherForecastIntegrationTests : IClassFixture<WebApplicationFacto
             Assert.InRange(forecast.TemperatureC, -20, 55);
         });
     }
+
+    [Fact]
+    public async Task GetMinneapolisWeather_ReturnsSunny()
+    {
+        var weather = await _client.GetStringAsync("/weatherforecast/minneapolis");
+
+        Assert.Equal("Sunny", weather);
+    }
 }

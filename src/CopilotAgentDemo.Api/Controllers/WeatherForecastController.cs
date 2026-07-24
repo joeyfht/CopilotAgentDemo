@@ -7,6 +7,8 @@ namespace CopilotAgentDemo.Api.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
+    private const string SunnyWeather = "Sunny";
+
     private static readonly string[] Summaries =
     [
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -34,6 +36,12 @@ public class WeatherForecastController : ControllerBase
     [HttpGet("shanghai", Name = "GetShanghaiWeather")]
     public string GetShanghaiWeather()
     {
-        return "Sunny";
+        return SunnyWeather;
+    }
+
+    [HttpGet("minneapolis", Name = "GetMinneapolisWeather")]
+    public string GetMinneapolisWeather()
+    {
+        return SunnyWeather;
     }
 }
