@@ -1,6 +1,8 @@
 ---
 name: Planner
 description: Investigate the requested change and produce a complete implementation plan without modifying source code.
+tools:
+  - github-pr-modifier
 ---
 
 # Planner Agent
