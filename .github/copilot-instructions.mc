@@ -1,345 +1,126 @@
-# GitHub Copilot Coding Agent Instructions
+# Repository Engineering Standards
 
-## Purpose
-
-This repository uses GitHub Copilot Coding Agent to assist with software development.
-All agents must follow these rules before making changes.
+These instructions apply to every GitHub Copilot Coding Agent working in this repository.
 
 ---
 
-# 1. General Development Rules
+# Engineering Principles
 
-## Code Quality
+Always prefer:
 
-All changes must:
+- simplicity
+- readability
+- maintainability
+- testability
+- security
+- reliability
 
-- Follow existing repository coding conventions.
-- Prefer simple, maintainable solutions.
-- Avoid unnecessary refactoring.
-- Preserve backward compatibility unless explicitly approved.
-- Include appropriate tests for changed behavior.
-
-## Before Changing Code
-
-The agent must:
-
-1. Understand the issue requirements.
-2. Inspect the existing implementation.
-3. Identify impacted components.
-4. Evaluate risks and dependencies.
-
-Do not modify code based only on assumptions.
+Do not introduce unnecessary complexity.
 
 ---
 
-# 2. Planning Requirement
-
-## Plan Before Implementation
-
-For non-trivial changes:
-
-A plan must be created before implementation.
-
-The plan must include:
-
-## Summary
-
-What problem is being solved.
-
-## Proposed Changes
-
-Detailed implementation approach.
-
-## Files Impacted
-
-List affected files and components.
-
-## Dependencies
-
-Identify impacted services, APIs, databases, or infrastructure.
-
-## Testing Strategy
-
-Describe validation approach.
-
-## Risks
-
-Identify possible failure scenarios.
-
-## Rollback Plan
-
-Describe how changes can be reverted.
-
----
-
-# 3. Repository Exploration
+# Planning
 
 Before making changes:
 
-Review:
+- understand the issue
+- investigate the affected code
+- understand dependencies
+- identify impacted components
+- consider edge cases
 
-- Existing code patterns.
-- Similar implementations.
-- Configuration files.
-- Existing tests.
-- Database dependencies.
-- API contracts.
-
-Prefer extending existing patterns over introducing new ones.
+Never guess.
 
 ---
 
-# 4. Code Change Rules
+# Code Quality
 
-## Source Code
+Code should:
 
-When modifying code:
-
-- Keep changes focused.
-- Avoid unrelated cleanup.
-- Do not remove existing functionality unless required.
-- Add comments only when logic is not obvious.
-
-## Dependencies
-
-Before adding dependencies:
-
-Evaluate:
-
-- Security impact.
-- Maintenance status.
-- License compatibility.
-- Existing alternatives.
+- follow existing repository conventions
+- be self-documenting
+- avoid duplication
+- avoid dead code
+- avoid unnecessary abstractions
 
 ---
 
-# 5. Testing Requirements
+# Testing
 
-Every implementation must include validation.
+Every functional change should include appropriate tests whenever practical.
 
-Required:
+Consider:
 
-- Build must pass.
-- Existing tests must pass.
-- New behavior must have tests.
-
-Preferred:
-
-- Unit tests.
-- Integration tests.
-- Regression tests.
-
-Testing evidence must be included in the PR.
+- unit tests
+- integration tests
+- regression tests
 
 ---
 
-# 6. Pull Request Requirements
-
-Every PR must include:
-
-## Summary
-
-What changed and why.
-
-## Implementation Plan
-
-The approved approach.
-
-## Files Impacted
-
-Important files changed.
-
-## Testing Strategy
-
-Tests executed and results.
-
-## Risks
-
-Potential impacts.
-
-## Rollback Plan
-
-How to safely revert.
-
-## Evidence
-
-Include:
-
-- Workflow run links.
-- Test results.
-- Build artifacts.
-- Security scan results.
-
----
-
-# 7. Safe Iteration Policy
-
-Failures are expected.
-
-When a required check fails:
-
-The agent may:
-
-1. Analyze the failure.
-2. Update the branch.
-3. Rerun validation.
-
-Maximum retry policy:
-
-- First failure:
-  - Investigate.
-  - Apply fix.
-  - Rerun checks.
-
-- Second failure:
-  - Stop automatic iteration.
-  - Escalate to human review.
-
-The escalation summary must include:
-
-- What failed.
-- What was attempted.
-- Evidence collected.
-- Recommended next step.
-
----
-
-# 8. Security Rules
-
-Agents must:
+# Security
 
 Never:
 
-- Commit secrets.
-- Store credentials in source code.
-- Disable security controls.
-- Bypass authentication or authorization checks.
+- hardcode secrets
+- commit credentials
+- bypass authentication
+- weaken authorization
+- expose sensitive information
 
-Security-sensitive changes require:
-
-- Security review.
-- Additional validation.
-- Clear rollback plan.
+Use secure defaults.
 
 ---
 
-# 9. Database Change Rules
+# Reliability
 
-Database changes require:
+Assume failures will occur.
 
-Documentation of:
+Design for:
 
-- Schema impact.
-- Data impact.
-- Performance considerations.
-- Migration steps.
-- Rollback strategy.
-
-Production database changes require:
-
-- Backup verification.
-- Deployment approval.
-- Migration validation.
+- retries
+- validation
+- logging
+- graceful failure
 
 ---
 
-# 10. API Change Rules
+# Git
 
-API changes must document:
+Keep commits focused.
 
-- Endpoint changes.
-- Request/response changes.
-- Backward compatibility.
-- Client impact.
+Avoid unrelated changes.
 
-Breaking changes require:
-
-- Migration strategy.
-- Deprecation plan.
-- Consumer notification.
+Do not reformat unrelated files.
 
 ---
 
-# 11. MCP Tool Usage Rules
+# Pull Requests
 
-MCP tools must follow least-privilege principles.
+Every PR should clearly explain:
 
-Agents must:
-
-- Use only required tools.
-- Prefer read-only access when possible.
-- Avoid production access unless explicitly approved.
-
-Environment access:
-
-## Development
-
-Allowed:
-
-- Code changes.
-- Development resources.
-- Test execution.
-
-## Test
-
-Allowed:
-
-- Validation.
-- Integration testing.
-
-## Production
-
-Restricted:
-
-- No direct modification.
-- Deployment only through approved workflows.
+- what changed
+- why
+- risks
+- testing performed
 
 ---
 
-# 12. Environment Rules
+# CI
 
-Deployment must follow:
+The repository requires:
 
-Development:
-- Automatic deployment allowed.
+- CI Validation
+- Plan Validation
+- Security Scan
 
-Test:
-- Approval may be required.
-
-Production:
-- Requires environment protection approval.
-
-Agents must never:
-
-- Deploy directly to production.
-- Modify production resources outside approved workflows.
+All required checks must pass before merge.
 
 ---
 
-# 13. Observability Requirements
+# When Uncertain
 
-Changes affecting runtime behavior must consider:
+State assumptions.
 
-- Logging.
-- Metrics.
-- Tracing.
-- Error handling.
-- Monitoring impact.
+Do not invent implementation details.
 
-The PR must document:
-
-- New telemetry.
-- Operational impact.
-- Troubleshooting information.
-
----
-
-# 14. Commit Guidelines
-
-Commits should:
-
-- Be small and focused.
-- Describe the intent.
-- Avoid unrelated changes.
-
-Preferred format:
+Prefer asking for clarification over guessing.
