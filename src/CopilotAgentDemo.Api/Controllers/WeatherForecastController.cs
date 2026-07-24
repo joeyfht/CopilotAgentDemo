@@ -30,4 +30,10 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+
+    [HttpGet("shanghai", Name = "GetShanghaiWeather")]
+    public string GetShanghaiWeather()
+    {
+        return "Sunny";
+    }
 }

@@ -69,4 +69,12 @@ public class WeatherForecastControllerTests
         var forecast = new WeatherForecast { TemperatureC = celsius };
         Assert.Equal(expectedFahrenheit, forecast.TemperatureF);
     }
+
+    [Fact]
+    public void GetShanghaiWeather_ReturnsSunny()
+    {
+        var result = _controller.GetShanghaiWeather();
+
+        Assert.Equal("Sunny", result);
+    }
 }
