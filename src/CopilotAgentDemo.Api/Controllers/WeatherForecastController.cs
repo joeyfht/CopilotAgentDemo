@@ -36,4 +36,10 @@ public class WeatherForecastController : ControllerBase
     {
         return "Sunny";
     }
+
+    [HttpGet("minneapolis", Name = "GetMinneapolisWeather")]
+    public string GetMinneapolisWeather()
+    {
+        return "Sunny";
+    }
 }

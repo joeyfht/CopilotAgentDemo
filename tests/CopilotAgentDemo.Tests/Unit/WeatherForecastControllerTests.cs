@@ -77,4 +77,12 @@ public class WeatherForecastControllerTests
 
         Assert.Equal("Sunny", result);
     }
+
+    [Fact]
+    public void GetMinneapolisWeather_ReturnsSunny()
+    {
+        var result = _controller.GetMinneapolisWeather();
+
+        Assert.Equal("Sunny", result);
+    }
 }
